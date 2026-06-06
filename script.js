@@ -16,7 +16,7 @@ function getHumanChoice() {
 }
 
 let humanScore = 0;
-let computerScore = 0;
+let computerScore = 0;  
 
 function playRound(humanChoice, computerChoice) {
     let humanChoiceLowerCase = humanChoice.toLowerCase();
@@ -48,9 +48,26 @@ function playRound(humanChoice, computerChoice) {
             humanScore++;
         }
     }
+    console.log("Updated Score: Human: " + humanScore + ", Computer: " + computerScore);
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function playGame() {
+    humanScore = 0;
+    computerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        let humanChoice = getHumanChoice();
+        let computerChoice = getComputerChoice();
 
-playRound(humanSelection, computerSelection);
+        playRound(humanChoice, computerChoice);
+    }
+
+    if (humanScore > computerScore) {
+        console.log("You win the game! You scored " + humanScore + (humanScore == 1 ? " point" : " points") + " while the computer scored " + computerScore + (computerScore == 1 ? " point." : " points."));
+    } else if (computerScore > humanScore) {
+        console.log("You lost the game! You scored " + humanScore + (humanScore == 1 ? " point" : " points") + " while the computer scored " + computerScore + (computerScore == 1 ? " point." : " points."));
+    } else {
+        console.log("You tied the game! Both you and the computer scored " + humanScore + (humanScore == 1 ? " point." : " points."));
+    }
+}
+
+playGame();
